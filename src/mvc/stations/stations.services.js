@@ -1,8 +1,8 @@
 const stationsControllers = require('./stations.controllers')
 
 const createStation = (req, res) => {
-    const { title, alias } = req.body
-    stationsControllers.createStation({ title, alias })
+    const { title, alias, flowername, beds, humrange, temprange } = req.body
+    stationsControllers.createStation({ title, alias, flowername, beds, humrange, temprange })
         .then(data => {
             res.status(200).json(data)
         })

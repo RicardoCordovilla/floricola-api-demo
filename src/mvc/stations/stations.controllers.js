@@ -4,7 +4,11 @@ const Stations = require('./stations.model')
 const createStation = async (data) => {
     const newRegister = await Stations.create({
         title: data.title,
-        alias: data.alias
+        alias: data.alias,
+        flowername: data.flowername,
+        beds: data.beds,
+        humRange: data.humrange,
+        tempRange: data.temprange
     })
     return newRegister
 }

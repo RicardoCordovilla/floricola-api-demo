@@ -21,7 +21,24 @@ const Stations = db.define('stations', {
         allowNull: true,
         defaultValue: true
     },
-    
-})
+    flowername: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    beds: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    humRange: {
+        type: DataTypes.JSON,
+        allowNull: false
+    },
+    tempRange: {
+        type: DataTypes.JSON,
+        allowNull: false
+    },
+
+
+}, { freezeTableName: true, timestamps: false })
 
 module.exports = Stations

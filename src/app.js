@@ -81,7 +81,8 @@ client.on('message', async function (topic, message) {
 
     jsonMessage.forEach(element => {
         const body = element
-        axios.post('https://floricola-api-demo-production.up.railway.app/api/v1/registers',
+        // axios.post('https://floricola-api-demo-production.up.railway.app/api/v1/registers',
+        axios.post('http://localhost:9000/api/v1/registers',
             body
         )
             .then(response => console.log(response.data))

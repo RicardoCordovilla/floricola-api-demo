@@ -23,7 +23,8 @@
     "sequelize": "^6.32.1",
     "socket.io": "^4.7.1",
     "socket.io-client": "^4.7.1",
-    "socketio": "^1.0.0"
+    "socketio": "^1.0.0",
+    "twilio": "^4.14.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
