@@ -20,6 +20,10 @@ const Registers = db.define('registers', {
     date: {
         type: DataTypes.TEXT,
         allowNull: false
+    },
+    time: {
+        type: DataTypes.TEXT,
+        allowNull: false
     }
 })
 
