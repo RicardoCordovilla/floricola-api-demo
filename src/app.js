@@ -22,7 +22,7 @@ db.authenticate()
     .then(() => { console.log('DB authenticated') })
     .catch(err => { console.log(err) })
 
-db.sync({ alter: true })
+db.sync({ force: true })
     .then(() => { console.log('DB synced') })
     .catch(err => { console.log(err) })
 
@@ -81,8 +81,8 @@ client.on('message', async function (topic, message) {
 
     jsonMessage.forEach(element => {
         const body = element
-        // axios.post('https://floricola-api-demo-production.up.railway.app/api/v1/registers',
-        axios.post('http://localhost:9000/api/v1/registers',
+        axios.post('https://floricola-api-demo-production.up.railway.app/api/v1/registers',
+            // axios.post('http://localhost:9000/api/v1/registers',
             body
         )
             .then(response => console.log(response.data))
