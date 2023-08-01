@@ -16,6 +16,10 @@ const Registers = db.define('registers', {
     values: {
         type: DataTypes.JSON,
         allowNull: false
+    },
+    date: {
+        type: DataTypes.TEXT,
+        allowNull: false
     }
 })
 

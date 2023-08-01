@@ -5,7 +5,8 @@ const Stations = require("../stations/stations.model")
 const createRegister = async (data) => {
     const newRegister = await Registers.create({
         stationtitle: data.station,
-        values: data.values
+        values: data.values,
+        date: new Date().toLocaleDateString('en-CA')
     })
     return newRegister
 }
@@ -37,32 +38,19 @@ const getRegisters = async (stationtitle) => {
 }
 
 const getRegistersByDate = async (startDate, endDate, stationtitle) => {
-    if (startDate !== endDate) {
-        const data = await Registers.findAll(
-            {
-                where: {
-                    stationtitle,
-                    createdAt: {
-                        [Op.between]: [new Date(startDate), new Date(endDate)]
-                    }
+    const data = await Registers.findAll(
+        {
+            where: {
+                stationtitle,
+                date: {
+                    [Op.between]: [startDate, endDate]
                 }
             }
-        )
-        return data
-    }
-    else {
-        const data = await Registers.findAll(
-            {
-                where: {
-                    stationtitle,
-                    createdAt: {
-                        [Op.eq]: [new Date(startDate)]
-                    }
-                }
-            }
-        )
-        return data
-    }
+        }
+    )
+    return data
+
+
 }
 
 const getLast = async (stationtitle) => {
