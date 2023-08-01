@@ -5,8 +5,8 @@ const Stations = require("../stations/stations.model")
 const createRegister = async (data) => {
     const currentDate = new Date()
     // currentDate.setDate(currentDate.getDate() - 1)
-    // console.log(currentDate.toLocaleDateString("es-EC", { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-'))
-    // console.log(currentDate.toLocaleTimeString("es-EC", { hour: 'numeric', minute: '2-digit' }))
+    console.log(currentDate.toLocaleDateString("es-EC", { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-'))
+    console.log(currentDate.toLocaleTimeString("es-EC", { hour: '2-digit', minute: '2-digit' }))
     const newRegister = await Registers.create({
         stationtitle: data.station,
         values: data.values,
