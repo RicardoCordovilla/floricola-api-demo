@@ -20,7 +20,8 @@ const Stations = db.define('stations', {
         type: DataTypes.BOOLEAN,
         allowNull: true,
         defaultValue: true
-    }
+    },
+    
 })
 
 module.exports = Stations

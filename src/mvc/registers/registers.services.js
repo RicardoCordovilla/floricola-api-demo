@@ -4,9 +4,9 @@ const registersControllers = require('./registers.controllers')
 
 
 const createRegister = async (req, res) => {
-    const { station, values } = req.body
+    const { station, hum, temp } = req.body
     console.log('create')
-    await registersControllers.createRegister({ station, values })
+    await registersControllers.createRegister({ station, hum, temp })
         .then(data => {
             res.status(200).json(data)
             // socket.emit('auth', "update")

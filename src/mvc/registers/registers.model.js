@@ -13,8 +13,16 @@ const Registers = db.define('registers', {
         type: DataTypes.TEXT,
         allowNull: false,
     },
-    values: {
-        type: DataTypes.JSON,
+    // values: {
+    //     type: DataTypes.JSON,
+    //     allowNull: false
+    // },
+    temp: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+    },
+    hum: {
+        type: DataTypes.FLOAT,
         allowNull: false
     },
     date: {
@@ -24,7 +32,12 @@ const Registers = db.define('registers', {
     time: {
         type: DataTypes.TEXT,
         allowNull: false
-    }
+    },
+    type: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+        defaultValue: 'hour'
+    },
 })
 
 module.exports = Registers
