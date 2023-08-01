@@ -6,7 +6,7 @@ const createRegister = async (data) => {
     const newRegister = await Registers.create({
         stationtitle: data.station,
         values: data.values,
-        date: new Date().toISOString().slice(0, 10)
+        date: new Date().toLocaleDateString()
     })
     return newRegister
 }
