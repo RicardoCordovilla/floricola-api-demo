@@ -22,7 +22,7 @@ db.authenticate()
     .then(() => { console.log('DB authenticated') })
     .catch(err => { console.log(err) })
 
-db.sync({ force: true })
+db.sync({ alter: true })
     .then(() => { console.log('DB synced') })
     .catch(err => { console.log(err) })
 
