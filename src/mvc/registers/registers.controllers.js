@@ -4,7 +4,7 @@ const Stations = require("../stations/stations.model")
 
 const createRegister = async (data) => {
     const currentDate = new Date()
-    currentDate.setDate(currentDate.getDate() - 1)
+    currentDate.setDate(currentDate.getDate() - 2)
     const newRegister = await Registers.create({
         stationtitle: data.station,
         values: data.values,
