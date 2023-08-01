@@ -3,10 +3,12 @@ const Registers = require("./registers.model")
 const Stations = require("../stations/stations.model")
 
 const createRegister = async (data) => {
+    const currentDate = new Date()
+    currentDate.setDate(currentDate.getDate() - 1)
     const newRegister = await Registers.create({
         stationtitle: data.station,
         values: data.values,
-        date: new Date().toLocaleString("en-US", { timeZone: "America/New_York", year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-')
+        date: currentDate.toISOString().slice(0, 10)
         // date: new Date().toISOString().toLocaleDateString("en-US", { year: 'numeric', month: '2-digit', day: '2-digits' }).split('/').reverse().join('-')
     })
     return newRegister
