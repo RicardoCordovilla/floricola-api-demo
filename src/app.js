@@ -22,7 +22,7 @@ db.authenticate()
     .then(() => { console.log('DB authenticated') })
     .catch(err => { console.log(err) })
 
-db.sync({ alter: true })
+db.sync()
     .then(() => { console.log('DB synced') })
     .catch(err => { console.log(err) })
 
@@ -58,7 +58,7 @@ const { default: axios } = require('axios')
 // app.use(express.json())
 
 const mqtt = require('mqtt')
-const client = mqtt.connect('ws://broker.emqx.io:8084/mqtt')
+const client = mqtt.connect('wss://broker.emqx.io:8084/mqtt')
 
 client.on('connect', function () {
     client.subscribe('miracleF01/devices', function (err) {
@@ -75,19 +75,19 @@ client.on('connect', function () {
 
 client.on('message', async function (topic, message) {
     // message is Buffer
-    // console.log("message recived: ", message.toString())
-    // jsonMessage = JSON.parse(message)
-    // console.log(jsonMessage)
+    console.log("message recived: ", message.toString())
+    jsonMessage = JSON.parse(message)
+    console.log(jsonMessage)
 
-    // jsonMessage.forEach(element => {
-    //     const body = element
-    //     axios.post('https://floricola-api-demo-production.up.railway.app/api/v1/registers',
-    //         // axios.post('http://localhost:9000/api/v1/registers',
-    //         body
-    //     )
-    //         .then(response => console.log(response.data))
-    //         .catch(err => console.log(err))
-    // });
+    jsonMessage.forEach(element => {
+        const body = element
+        axios.post('https://floricola-api-demo-production.up.railway.app/api/v1/registers',
+            // axios.post('http://localhost:9000/api/v1/registers',
+            body
+        )
+            .then(response => console.log(response.data))
+            .catch(err => console.log(err))
+    });
     // client.end()
 })
 
