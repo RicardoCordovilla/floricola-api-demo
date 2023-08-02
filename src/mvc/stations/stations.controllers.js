@@ -29,8 +29,16 @@ const getStation = async (stationtitle) => {
     return data
 }
 
+const updateStation = async (station, body) => {
+    const data = await Stations.update(body,
+        {
+            where: { title: station }
+        })
+    return data
+}
 module.exports = {
     createStation,
     getStations,
-    getStation
+    getStation,
+    updateStation
 }

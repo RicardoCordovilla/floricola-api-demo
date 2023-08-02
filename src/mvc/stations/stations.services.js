@@ -31,9 +31,21 @@ const getStation = (req, res) => {
         })
 }
 
+const updateStation = (req, res) => {
+    stationsControllers.updateStation(req.params.station, req.body)
+        .then((response) => {
+            res.status(200).json(response)
+        })
+        .catch((err) => {
+            res.status(404).json({ message: err.message })
+        })
+}
+
+
 
 module.exports = {
     createStation,
     getStations,
-    getStation
+    getStation,
+    updateStation
 }
