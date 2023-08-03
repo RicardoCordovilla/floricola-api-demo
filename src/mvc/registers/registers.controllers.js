@@ -144,8 +144,8 @@ const createRegister = async (data) => {
         stationtitle: data.station,
         temp: data.temp,
         hum: data.hum,
-        date: formatDate(new Date(new Date().setHours(-5))),
-        time: formatTime(new Date(new Date().setHours(-5))),
+        date: formatDate(new Date(new Date().setHours(-2))),
+        time: formatTime(new Date(new Date().setHours(-2))),
     })
 
     updateRegisterDay(currentLocalDate, data.station)
