@@ -30,7 +30,7 @@ const formatDate = (date) => {
 }
 
 const formatTime = (date) => {
-    const time = new Date(date)
+    const time = new Date()
     let stringTime = digits(time.getHours() + ':' + digits(time.getMinutes()))
     return stringTime
 }
