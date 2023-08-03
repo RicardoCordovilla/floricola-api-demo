@@ -17,11 +17,18 @@ const client = require('twilio')(accountSid, authToken);
 
 
 const currentDate = new Date()
-const currentLocalDate = currentDate.toLocaleDateString("es-EC", 
-{ 
-    year: 'numeric', month: '2-digit', day: '2-digit' ,
-    timeZone:'America/Guayaquil'
-}).split('/').reverse().join('-')
+const currentLocalDate = currentDate.toLocaleDateString("es-EC",
+    {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        timeZone: 'America/Guayaquil'
+    }).split('/').reverse().join('-')
+
+const currentLocalTime = currentDate.toLocaleTimeString("es-EC",
+    {
+        hour: '2-digit', minute: '2-digit',
+        timeZone: 'America/Guayaquil'
+    })
+
 
 
 const sendAlert = (message) => {
@@ -108,7 +115,7 @@ const createRegister = async (data) => {
             temp: data.temp,
             hum: data.hum,
             date: currentLocalDate,
-            time: currentDate.toLocaleTimeString("es-EC", { hour: '2-digit', minute: '2-digit' }),
+            time: currentLocalTime,
             type: 'day'
         }
     })
