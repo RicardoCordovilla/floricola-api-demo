@@ -26,11 +26,11 @@ const Registers = db.define('registers', {
         allowNull: false
     },
     date: {
-        type: DataTypes.TEXT,
+        type: DataTypes.DATEONLY,
         allowNull: false
     },
     time: {
-        type: DataTypes.TEXT,
+        type: DataTypes.TIME,
         allowNull: false
     },
     type: {

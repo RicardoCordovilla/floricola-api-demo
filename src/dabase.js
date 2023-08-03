@@ -8,11 +8,8 @@ const db = new Sequelize({
     password: config.db.password,
     database: config.db.dbName,
     port: config.db.dbPort,
-    dialectOptions: {
-        useUTC: false, //for reading from database
-        dateStrings: true,
-        timezone: '-05:00'
-    }
+    // dialectOptions: {},
+    // timezone: "-05:00"
 })
 
 module.exports = db
