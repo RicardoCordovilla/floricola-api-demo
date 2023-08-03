@@ -15,16 +15,6 @@ const client = require('twilio')(accountSid, authToken);
 // })
 // .then((message) => console.log(message.sid));
 
-
-const currentDate = new Date()
-const currentLocalDate = currentDate.toLocaleDateString("es-EC",
-    {
-        year: 'numeric', month: '2-digit', day: '2-digit',
-        timeZone: 'US/Hawaii'
-        // }).split('/').reverse().join('-')
-    })
-
-
 const digits = (num) => {
     let digit = num < 10 ? '0' + num : num + ''
     return digit
@@ -43,13 +33,9 @@ const formatTime = (date) => {
 }
 
 
-const currentLocalTime = currentDate.toLocaleTimeString("es-EC",
-    {
-        hour: '2-digit', minute: '2-digit',
-        timeZone: 'America/Lima'
-    })
-
-
+const currentDate = new Date()
+const currentLocalDate = formatDate(new Date(currentDate.setHours(-2)))
+const currentLocalTime = formatTime(new Date(currentDate.setHours(-2)))
 
 const sendAlert = (message) => {
     client.messages
@@ -128,24 +114,24 @@ const createRegister = async (data) => {
     // console.log(currentDate.toLocaleTimeString("es-EC", { hour: '2-digit', minute: '2-digit' }))
 
 
-    // const newRegisterDay = await Registers.findOrCreate({
-    //     where: { type: 'day', date: currentLocalDate, stationtitle: data.station },
-    //     defaults: {
-    //         stationtitle: data.station,
-    //         temp: data.temp,
-    //         hum: data.hum,
-    //         date: formatDate(currentLocalDate),
-    //         time: formatTime(currentLocalDate),
-    //         type: 'day'
-    //     }
-    // })
+    const newRegisterDay = await Registers.findOrCreate({
+        where: { type: 'day', date: currentLocalDate, stationtitle: data.station },
+        defaults: {
+            stationtitle: data.station,
+            temp: data.temp,
+            hum: data.hum,
+            date: currentLocalDate,
+            time: currentLocalTime,
+            type: 'day'
+        }
+    })
 
     const newRegister = await Registers.create({
         stationtitle: data.station,
         temp: data.temp,
         hum: data.hum,
-        date: formatDate(new Date(new Date().setHours(-2))),
-        time: formatTime(new Date(new Date().setHours(-2))),
+        date: currentLocalDate,
+        time: currentLocalTime,
     })
 
     updateRegisterDay(currentLocalDate, data.station)
