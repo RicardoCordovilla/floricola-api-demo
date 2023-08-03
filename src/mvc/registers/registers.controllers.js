@@ -33,9 +33,7 @@ const formatTime = (date) => {
 }
 
 
-const currentDate = new Date()
-const currentLocalDate = formatDate(new Date(currentDate.setHours(-1)))
-const currentLocalTime = formatTime(new Date(currentDate.setHours(-1)))
+
 
 const sendAlert = (message) => {
     client.messages
@@ -49,7 +47,7 @@ const sendAlert = (message) => {
 }
 
 
-const promedio = async (stationtitle, type) => {
+const promedio = async (stationtitle, type, currentLocalDate) => {
     const sum = await Registers.sum(type, {
         where: {
             stationtitle,
@@ -77,8 +75,8 @@ const promedio = async (stationtitle, type) => {
 const updateRegisterDay = async (date, stationtitle) => {
     const updateRegisterDay = await Registers.update(
         {
-            hum: await promedio(stationtitle, 'hum'),
-            temp: await promedio(stationtitle, 'temp')
+            hum: await promedio(stationtitle, 'hum', date),
+            temp: await promedio(stationtitle, 'temp', date)
         }, {
         where: {
             stationtitle,
@@ -109,10 +107,11 @@ const createRegister = async (data) => {
     // `)
 
     const currentDate = new Date()
-    // currentDate.setDate(currentDate.getDate() - 1)
-    // console.log(currentDate.toLocaleDateString("es-EC", { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-'))
-    // console.log(currentDate.toLocaleTimeString("es-EC", { hour: '2-digit', minute: '2-digit' }))
 
+    // console.log(currentDate.toLocaleDateString("es-EC", { timeZone: 'America/Lima' }, { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-'))
+    // console.log(currentDate.toLocaleTimeString("es-EC", { timeZone: 'America/Lima' }, { hour: '2-digit', minute: '2-digit' }))
+    const currentLocalDate = formatDate(currentDate.toLocaleDateString("es-EC", { timeZone: 'America/Guayaquil' }, { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-'))
+    const currentLocalTime = (currentDate.toLocaleTimeString("es-EC", { timeZone: 'America/Lima' }, { hour: '2-digit', minute: '2-digit' }).slice(0, 5))
 
     const newRegisterDay = await Registers.findOrCreate({
         where: { type: 'day', date: currentLocalDate, stationtitle: data.station },
@@ -120,8 +119,8 @@ const createRegister = async (data) => {
             stationtitle: data.station,
             temp: data.temp,
             hum: data.hum,
-            date: formatDate(new Date(new Date().setHours(-1))),
-            time: formatTime(new Date(new Date().setHours(-1))),
+            date: currentLocalDate,
+            time: currentLocalTime,
             type: 'day'
         }
     })
@@ -130,8 +129,8 @@ const createRegister = async (data) => {
         stationtitle: data.station,
         temp: data.temp,
         hum: data.hum,
-        date: formatDate(new Date(new Date().setHours(-1))),
-        time: formatTime(new Date(new Date().setHours(-1))),
+        date: currentLocalDate,
+        time: currentLocalTime,
     })
 
     updateRegisterDay(currentLocalDate, data.station)
