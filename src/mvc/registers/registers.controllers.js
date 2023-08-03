@@ -23,10 +23,10 @@ const currentLocalDate = currentDate.toLocaleDateString("es-EC",
         timeZone: 'America/Guayaquil'
     }).split('/').reverse().join('-')
 
-const currentLocalTime = currentDate.toLocaleTimeString("en-US",
+const currentLocalTime = currentDate.toLocaleTimeString("es-EC",
     {
         hour: '2-digit', minute: '2-digit',
-        timeZone: 'US/Eastern'
+        timeZone: 'America/Bogota'
     })
 
 
