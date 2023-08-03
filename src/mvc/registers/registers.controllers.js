@@ -34,8 +34,8 @@ const formatTime = (date) => {
 
 
 const currentDate = new Date()
-const currentLocalDate = formatDate(new Date(currentDate.setHours(-2)))
-const currentLocalTime = formatTime(new Date(currentDate.setHours(-2)))
+const currentLocalDate = formatDate(new Date(currentDate.setHours(-1)))
+const currentLocalTime = formatTime(new Date(currentDate.setHours(-1)))
 
 const sendAlert = (message) => {
     client.messages
@@ -130,8 +130,8 @@ const createRegister = async (data) => {
         stationtitle: data.station,
         temp: data.temp,
         hum: data.hum,
-        date: formatDate(new Date(currentDate.setHours(-2))),
-        time: formatTime(new Date(currentDate.setHours(-2))),
+        date: formatDate(new Date(currentDate.setHours(-1))),
+        time: formatTime(new Date(currentDate.setHours(-1))),
     })
 
     updateRegisterDay(currentLocalDate, data.station)
