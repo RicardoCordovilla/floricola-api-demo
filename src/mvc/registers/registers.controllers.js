@@ -21,7 +21,8 @@ const currentLocalDate = currentDate.toLocaleDateString("es-EC",
     {
         year: 'numeric', month: '2-digit', day: '2-digit',
         timeZone: 'US/Hawaii'
-    }).split('/').reverse().join('-')
+    // }).split('/').reverse().join('-')
+    })
 
 
 const digits = (num) => {
