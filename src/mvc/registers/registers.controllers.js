@@ -55,7 +55,7 @@ const promedio = async (stationtitle, type) => {
             stationtitle,
             type: 'hour',
             date: {
-                [Op.between]: [currentLocalDate, currentLocalDate]
+                [Op.between]: [formatDate(new Date(currentDate.setHours(-2))), formatDate(new Date(currentDate.setHours(-2)))]
             }
         }
     })
@@ -65,7 +65,7 @@ const promedio = async (stationtitle, type) => {
             stationtitle,
             type: 'hour',
             date: {
-                [Op.between]: [currentLocalDate, currentLocalDate]
+                [Op.between]: [formatDate(new Date(currentDate.setHours(-2))), formatDate(new Date(currentDate.setHours(-2)))]
             }
         }
     })
@@ -114,17 +114,17 @@ const createRegister = async (data) => {
     // console.log(currentDate.toLocaleTimeString("es-EC", { hour: '2-digit', minute: '2-digit' }))
 
 
-    // const newRegisterDay = await Registers.findOrCreate({
-    //     where: { type: 'day', date: currentLocalDate, stationtitle: data.station },
-    //     defaults: {
-    //         stationtitle: data.station,
-    //         temp: data.temp,
-    //         hum: data.hum,
-    //         date: currentLocalDate,
-    //         time: currentLocalTime,
-    //         type: 'day'
-    //     }
-    // })
+    const newRegisterDay = await Registers.findOrCreate({
+        where: { type: 'day', date: formatDate(new Date(currentDate.setHours(-2))), stationtitle: data.station },
+        defaults: {
+            stationtitle: data.station,
+            temp: data.temp,
+            hum: data.hum,
+            date: formatDate(new Date(currentDate.setHours(-2))),
+            time: formatTime(new Date(currentDate.setHours(-2))),
+            type: 'day'
+        }
+    })
 
     const newRegister = await Registers.create({
         stationtitle: data.station,
@@ -134,7 +134,7 @@ const createRegister = async (data) => {
         time: formatTime(new Date(currentDate.setHours(-2))),
     })
 
-    updateRegisterDay(currentLocalDate, data.station)
+    updateRegisterDay(formatDate(new Date(currentDate.setHours(-2))), data.station)
 
     return newRegister
 }
