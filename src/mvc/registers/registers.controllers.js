@@ -110,7 +110,7 @@ const createRegister = async (data) => {
 
     // console.log(currentDate.toLocaleDateString("es-EC", { timeZone: 'America/Lima' }, { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-'))
     // console.log(currentDate.toLocaleTimeString("es-EC", { timeZone: 'America/Lima' }, { hour: '2-digit', minute: '2-digit' }))
-    const currentLocalDate = formatDate(currentDate.toLocaleDateString("es-EC", { timeZone: 'America/Guayaquil' }, { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-'))
+    const currentLocalDate = formatDate(currentDate.toLocaleDateString("es-EC", { timeZone: 'US/Hawaii' }, { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-'))
     const currentLocalTime = (currentDate.toLocaleTimeString("es-EC", { timeZone: 'America/Lima' }, { hour: '2-digit', minute: '2-digit' }).slice(0, 5))
 
     const newRegisterDay = await Registers.findOrCreate({
