@@ -16,6 +16,25 @@ const client = require('twilio')(accountSid, authToken);
 // .then((message) => console.log(message.sid));
 
 
+
+
+const digits = (num) => {
+    let digit = num < 10 ? '0' + num : num + ''
+    return digit
+}
+
+const formatDate = () => {
+    const fecha = new Date()
+    let stringDate = fecha.getFullYear() + '-' + digits(fecha.getMonth() + 1) + '-' + digits(fecha.getDate())
+    return stringDate
+}
+
+const formatTime = () => {
+    const time = new Date()
+    let stringTime = digits(time.getHours() + ':' + digits(time.getMinutes()))
+    return stringTime
+}
+
 const currentDate = new Date()
 const currentLocalDate = currentDate.toLocaleDateString("es-EC",
     {
@@ -114,8 +133,8 @@ const createRegister = async (data) => {
             stationtitle: data.station,
             temp: data.temp,
             hum: data.hum,
-            date: currentLocalDate,
-            time: currentLocalTime,
+            date: formatDate(),
+            time: formatTime(),
             type: 'day'
         }
     })
@@ -124,8 +143,8 @@ const createRegister = async (data) => {
         stationtitle: data.station,
         temp: data.temp,
         hum: data.hum,
-        date: currentLocalDate,
-        time: currentLocalTime,
+        date: formatDate(),
+        time: formatTime(),
     })
 
     updateRegisterDay(currentLocalDate, data.station)
