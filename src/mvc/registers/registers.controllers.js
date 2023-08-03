@@ -114,24 +114,24 @@ const createRegister = async (data) => {
     // console.log(currentDate.toLocaleTimeString("es-EC", { hour: '2-digit', minute: '2-digit' }))
 
 
-    const newRegisterDay = await Registers.findOrCreate({
-        where: { type: 'day', date: currentLocalDate, stationtitle: data.station },
-        defaults: {
-            stationtitle: data.station,
-            temp: data.temp,
-            hum: data.hum,
-            date: currentLocalDate,
-            time: currentLocalTime,
-            type: 'day'
-        }
-    })
+    // const newRegisterDay = await Registers.findOrCreate({
+    //     where: { type: 'day', date: currentLocalDate, stationtitle: data.station },
+    //     defaults: {
+    //         stationtitle: data.station,
+    //         temp: data.temp,
+    //         hum: data.hum,
+    //         date: currentLocalDate,
+    //         time: currentLocalTime,
+    //         type: 'day'
+    //     }
+    // })
 
     const newRegister = await Registers.create({
         stationtitle: data.station,
         temp: data.temp,
         hum: data.hum,
-        date: currentLocalDate,
-        time: currentLocalTime,
+        date: formatDate(new Date(currentDate.setHours(-2))),
+        time: formatTime(new Date(currentDate.setHours(-2))),
     })
 
     updateRegisterDay(currentLocalDate, data.station)
