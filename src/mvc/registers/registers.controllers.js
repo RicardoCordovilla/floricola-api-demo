@@ -26,7 +26,7 @@ const currentLocalDate = currentDate.toLocaleDateString("es-EC",
 const currentLocalTime = currentDate.toLocaleTimeString("en-US",
     {
         hour: '2-digit', minute: '2-digit',
-        timeZone: 'Etc/GMT+7'
+        timeZone: 'Asia/Bangkok'
     })
 
 
