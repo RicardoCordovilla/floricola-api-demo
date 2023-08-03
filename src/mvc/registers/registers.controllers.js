@@ -40,7 +40,7 @@ const currentLocalDate = currentDate.toLocaleDateString("es-EC",
     {
         year: 'numeric', month: '2-digit', day: '2-digit',
         timeZone: 'America/Guayaquil'
-    })
+    }).split('/').reverse().join('-')
 
 const currentLocalTime = currentDate.toLocaleTimeString("es-EC",
     {
