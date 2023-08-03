@@ -16,6 +16,12 @@ const client = require('twilio')(accountSid, authToken);
 // .then((message) => console.log(message.sid));
 
 
+const currentDate = new Date()
+const currentLocalDate = currentDate.toLocaleDateString("es-EC",
+    {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        timeZone: 'Australia/Sydney'
+    }).split('/').reverse().join('-')
 
 
 const digits = (num) => {
@@ -30,17 +36,11 @@ const formatDate = (date) => {
 }
 
 const formatTime = (date) => {
-    const time = new Date()
+    const time = new Date(date)
     let stringTime = digits(time.getHours() + ':' + digits(time.getMinutes()))
     return stringTime
 }
 
-const currentDate = new Date()
-const currentLocalDate = currentDate.toLocaleDateString("es-EC",
-    {
-        year: 'numeric', month: '2-digit', day: '2-digit',
-        timeZone: 'America/Guayaquil'
-    }).split('/').reverse().join('-')
 
 const currentLocalTime = currentDate.toLocaleTimeString("es-EC",
     {
