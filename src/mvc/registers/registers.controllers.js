@@ -23,14 +23,14 @@ const digits = (num) => {
     return digit
 }
 
-const formatDate = () => {
-    const fecha = new Date()
+const formatDate = (date) => {
+    const fecha = new Date(date)
     let stringDate = fecha.getFullYear() + '-' + digits(fecha.getMonth() + 1) + '-' + digits(fecha.getDate())
     return stringDate
 }
 
-const formatTime = () => {
-    const time = new Date()
+const formatTime = (date) => {
+    const time = new Date(date)
     let stringTime = digits(time.getHours() + ':' + digits(time.getMinutes()))
     return stringTime
 }
@@ -40,7 +40,7 @@ const currentLocalDate = currentDate.toLocaleDateString("es-EC",
     {
         year: 'numeric', month: '2-digit', day: '2-digit',
         timeZone: 'America/Guayaquil'
-    }).split('/').reverse().join('-')
+    })
 
 const currentLocalTime = currentDate.toLocaleTimeString("es-EC",
     {
@@ -133,8 +133,8 @@ const createRegister = async (data) => {
             stationtitle: data.station,
             temp: data.temp,
             hum: data.hum,
-            date: formatDate(),
-            time: formatTime(),
+            date: formatDate(currentLocalDate),
+            time: formatTime(currentLocalDate),
             type: 'day'
         }
     })
@@ -143,8 +143,8 @@ const createRegister = async (data) => {
         stationtitle: data.station,
         temp: data.temp,
         hum: data.hum,
-        date: formatDate(),
-        time: formatTime(),
+        date: formatDate(currentLocalDate),
+        time: formatTime(currentLocalDate),
     })
 
     updateRegisterDay(currentLocalDate, data.station)
