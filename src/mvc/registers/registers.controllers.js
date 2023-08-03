@@ -145,7 +145,7 @@ const createRegister = async (data) => {
         temp: data.temp,
         hum: data.hum,
         date: formatDate(currentLocalDate),
-        time: new Date((new Date() - new Date(5000))),
+        time: new Date(),
     })
 
     updateRegisterDay(currentLocalDate, data.station)
