@@ -26,7 +26,7 @@ const currentLocalDate = currentDate.toLocaleDateString("es-EC",
 const currentLocalTime = currentDate.toLocaleTimeString("en-US",
     {
         hour: '2-digit', minute: '2-digit',
-        timeZone: 'Etc/GMT+0'
+        timeZone: 'Etc/GMT+7'
     })
 
 
@@ -124,10 +124,8 @@ const createRegister = async (data) => {
         stationtitle: data.station,
         temp: data.temp,
         hum: data.hum,
-        // values: data.values,
-        // date: currentDate.toISOString().slice(0, 10)
         date: currentLocalDate,
-        time: currentDate.toLocaleTimeString("es-EC", { hour: '2-digit', minute: '2-digit' })
+        time: currentLocalTime,
     })
 
     updateRegisterDay(currentLocalDate, data.station)
