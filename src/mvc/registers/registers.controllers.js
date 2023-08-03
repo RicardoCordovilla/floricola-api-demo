@@ -191,7 +191,8 @@ const getRegistersByDate = async (startDate, endDate, stationtitle) => {
                     date: {
                         [Op.between]: [startDate, endDate]
                     }
-                }
+                },
+                order: [['createdAt']]
             }
         )
         return data
