@@ -25,8 +25,8 @@ const currentLocalDate = currentDate.toLocaleDateString("es-EC",
 
 const currentLocalTime = currentDate.toLocaleTimeString("en-US",
     {
-        hour: '2-digit', minute: '2-digit', hour12: 'false',
-        timeZone: 'US/Arizona'
+        hour: '2-digit', minute: '2-digit', timeStyle: 'short',
+        timeZone: 'America/Bogota'
     })
 
 
