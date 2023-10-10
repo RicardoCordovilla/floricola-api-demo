@@ -165,6 +165,22 @@ const getRegisters = async (stationtitle) => {
 }
 
 const getRegistersByDate = async (startDate, endDate, stationtitle) => {
+    const data = await Registers.findAll(
+        {
+            where: {
+                stationtitle,
+                type: 'hour',
+                date: {
+                    [Op.between]: [startDate, endDate]
+                }
+            },
+            order: [['createdAt']]
+        }
+    )
+    return data
+}
+
+const getRegistersByDateDays = async (startDate, endDate, stationtitle) => {
 
     if (startDate === endDate) {
         const data = await Registers.findAll(
